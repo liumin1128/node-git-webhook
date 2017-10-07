@@ -20,7 +20,7 @@ handler.on('push', (event) => {
   console.log(
     'Received a push event for %s to %s',
     event.payload.repository.name,
-    event.payload.ref,
+    event.payload.ref
   );
 });
 
@@ -30,6 +30,6 @@ handler.on('issues', (event) => {
     event.payload.repository.name,
     event.payload.action,
     event.payload.issue.number,
-    event.payload.issue.title,
+    event.payload.issue.title
   );
 });

@@ -1,0 +1,26 @@
+{
+  "name": "node-git-webhook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liumin1128/node-git-webhook.git"
+  },
+  "keywords": [
+    "webhook"
+  ],
+  "author": "liumin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liumin1128/node-git-webhook/issues"
+  },
+  "homepage": "https://github.com/liumin1128/node-git-webhook#readme",
+  "dependencies": {
+    "github-webhook-handler": "^0.6.0"
+  }
+}
