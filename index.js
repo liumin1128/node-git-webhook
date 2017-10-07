@@ -5,6 +5,12 @@ const handler = createHandler({ path: '/webhook', secret: 'myhashsecret' });
 
 http.createServer((req, res) => {
   handler(req, res, (err) => {
+    console.log('req');
+    console.log(req);
+    console.log('res');
+    console.log(res);
+    console.log('err');
+    console.log(err);
     res.statusCode = 404;
     res.end('no such location');
   });
