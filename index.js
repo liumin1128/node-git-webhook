@@ -1,3 +1,41 @@
+const http = require('http');
+const createHandler = require('github-webhook-handler');
+
+const handler = createHandler({ path: '/webhook', secret: 'myhashsecret' });
+
+http.createServer((req, res) => {
+  handler(req, res, (err) => {
+    res.statusCode = 404;
+    res.end('no such location');
+  });
+}).listen(7777);
+
+handler.on('error', (err) => {
+  console.error('Error:', err.message);
+});
+
+handler.on('push', (event) => {
+  console.log(
+    'Received a push event for %s to %s',
+    event.payload.repository.name,
+    event.payload.ref
+  );
+  var shpath = './' + event.payload.repository.name + '.sh';
+  RunCmd('sh', [shpath], function(result) {
+      console.log(result);
+  })
+});
+
+handler.on('issues', (event) => {
+  console.log(
+    'Received an issue event for %s action=%s: #%d %s',
+    event.payload.repository.name,
+    event.payload.action,
+    event.payload.issue.number,
+    event.payload.issue.title
+  );
+});
+
 function RunCmd(cmd, args, cb) {
   var spawn = require('child_process').spawn;
   var child = spawn(cmd, args);
@@ -15,13 +53,3 @@ function RunCmd(cmd, args, cb) {
       console.log('Exit: '+code);
   });
 }
-
-
-function test() {
-  var shpath = './api.react.mobi.sh';
-  RunCmd('sh', [shpath], function(result) {
-      console.log(result);
-  })
-}
-
-test()
