@@ -22,6 +22,9 @@ handler.on('push', (event) => {
   );
 
   var shpath = '../' + event.payload.repository.name + '/auto_build.sh';
+  console.log('shpath')
+  console.log(shpath)
+
   RunCmd('sh', [shpath], function(result) {
       console.log(result);
   })
