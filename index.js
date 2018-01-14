@@ -21,7 +21,7 @@ handler.on('push', (event) => {
     event.payload.ref
   );
 
-  var shpath = '../' + event.payload.repository.name + '/auto_build2.sh';
+  var shpath = '../' + event.payload.repository.name + '/auto_build.sh';
   console.log('shpath')
   console.log(shpath)
 
