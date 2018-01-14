@@ -22,8 +22,7 @@ handler.on('push', (event) => {
   );
 
   var shpath = '../' + event.payload.repository.name + '/auto_build.sh';
-  console.log('shpath')
-  console.log(shpath)
+  console.log('将运行脚本：'+shpath)
 
   RunCmd('sh', [shpath], function(result) {
       console.log(result);
@@ -51,9 +50,9 @@ function RunCmd(cmd, args, cb) {
     cb(result)
   });
   child.stderr.on('data', function(data) {
-      console.log('Error: \n'+ data);
+    console.log('Error: \n'+ data);
   });
   child.on('exit',function(code,signal) {
-      console.log('Exit: '+code);
+    console.log('Exit: '+code);
   });
 }
